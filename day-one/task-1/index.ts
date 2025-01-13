@@ -1,16 +1,19 @@
 function identicalLetters(str1: string, str2: string): string {
-    const set1 = new Set(str1.toLowerCase());
-    const set2 = new Set(str2.toLowerCase());
-    const commonCharacters: string[] = [];
+    let lowerStr1 = str1.toLowerCase();
+    let lowerStr2 = str2.toLowerCase();
 
-    for (const char of set1) {
-        if (set2.has(char)) {
-            commonCharacters.push(char);
+    let commonCharacters = "";
+
+    for (const char of lowerStr1) {
+        const index = lowerStr2.indexOf(char);
+        if (index !== -1) {
+            commonCharacters += char;
+            lowerStr2 = lowerStr2.slice(0, index) + lowerStr2.slice(index + 1);
         }
     }
 
-    return commonCharacters.join('');
+    return commonCharacters;
 }
 
-const result = identicalLetters("pRactice", "exercisE");
+const result = identicalLetters("pRRractice", "exerrcise");
 console.log(result);
